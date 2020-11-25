@@ -1,0 +1,7 @@
+webform_ficha_catalografica.ficha_controller_pdf:
+  path: '/ficha/{webform_submission_id}'
+  defaults:
+    _controller: '\Drupal\webform_ficha_catalografica\Controller\FichaController::pdf'
+    _title: 'pdf'
+  requirements:
+    _permission: 'access content'
