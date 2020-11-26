@@ -9,6 +9,7 @@ use Cezpdf;
 
 class Ficha {
 	public static function fields(WebformSubmissionInterface $webform_submission){
+
 	  $data = $webform_submission->getData();
 	  $webform = $webform_submission->getWebform();
 	  
@@ -29,11 +30,12 @@ class Ficha {
 	  return [
 		'pessoa_nome' => $data[$element["#pessoa_nome"]],
 		'pessoa_ultimonome' => $data[$element["#pessoa_ultimonome"]],
+		# Completar...
 	  ];
 	}
 
-	public static function pdf($webform_submission_id) {
-		$fields = self::fields($webform_submission_id);
+	public static function pdf($webform_submission) {
+		$fields = self::fields($webform_submission);
 
 		$pdf = new Cezpdf('a4','portrait','color',[0.8,0.8,0.8]);
 		// Set pdf Bleedbox
