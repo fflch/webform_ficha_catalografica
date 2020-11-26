@@ -4,7 +4,9 @@ namespace Drupal\webform_ficha_catalografica\Plugin\WebformElement;
 
 use Drupal\webform\Plugin\WebformElementBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\webform\WebformSubmissionInterface;
+
+use Symfony\Component\HttpFoundation\Response;
+use Drupal\webform_ficha_catalografica\Utils\Ficha;
 
 /**
  * Provides a 'FichaCatalografica' element.
@@ -161,9 +163,9 @@ class WebformElementFichaCatalografica extends WebformElementBase {
         ];
 
         $form['ficha_catalografica']['container']['assuntos'] = [
-        '#type' => 'fieldset',
-        '#description' => $this->t(""),
-        '#title' => $this->t('Assuntos (mín. 1, máx. 5)'),
+            '#type' => 'fieldset',
+            '#description' => $this->t(""),
+            '#title' => $this->t('Assuntos (mín. 1, máx. 5)'),
         ];
 
         $form['ficha_catalografica']['container']['assuntos']['assunto1'] = [
@@ -200,12 +202,7 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             '#title' => $this->t('Chave para quinto assunto'),
             '#required' => FALSE,
         ];
-
         return $form;
     }
 
-    public function preSave(array &$element, WebformSubmissionInterface $webform_submission) {
-        # gerar o pdf da ficha catalográfica
-        var_dump("parar"); die();
-    }
 }

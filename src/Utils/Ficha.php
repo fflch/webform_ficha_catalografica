@@ -2,10 +2,38 @@
 
 namespace Drupal\webform_ficha_catalografica\Utils;
 
+use Drupal\webform\Entity\WebformSubmission;
+use Drupal\webform\WebformSubmissionInterface;
+
 use Cezpdf;
 
-class Ficha{
-	public function pdf(){
+class Ficha {
+	public static function fields(WebformSubmissionInterface $webform_submission){
+	  $data = $webform_submission->getData();
+	  $webform = $webform_submission->getWebform();
+	  
+	  # Vamos verificar se esse formulário tem campo do tipo ficha catalográfica
+	  # se tiver mais que um, consideramos somente o último ...
+	  $ficha_field = FALSE;
+	  $elements = $webform->getElementsDecoded();
+	  foreach ($elements as $element) {
+		if($element['#type'] == 'ficha_catalografica'){
+			$ficha_field = $element;
+		}
+	  }
+	  # TODO: O que faremos senão tiver nenhum campo do tipo ficha?
+	  
+	  #dump($data);
+	  #dump($element);
+  
+	  return [
+		'pessoa_nome' => $data[$element["#pessoa_nome"]],
+		'pessoa_ultimonome' => $data[$element["#pessoa_ultimonome"]],
+	  ];
+	}
+
+	public static function pdf($webform_submission_id) {
+		$fields = self::fields($webform_submission_id);
 
 		$pdf = new Cezpdf('a4','portrait','color',[0.8,0.8,0.8]);
 		// Set pdf Bleedbox
@@ -20,10 +48,14 @@ class Ficha{
 		$pdf->openHere('Fit');
 		
 		// Output some colored text by using text directives and justify it to the right of the document
-		$pdf->ezText("PDF with some <c:color:1,0,0>blue</c:color> <c:color:0,1,0>red</c:color> and <c:color:0,0,1>green</c:color> colours", $size, ['justification'=>'right']);
+		$content = "Esse é o nome {$fields['pessoa_nome']} e esse adivinha? {$fields['pessoa_ultimonome']} ";
+		$pdf->ezText($content, $size, ['justification'=>'right']);
+		
 		// Output the pdf as stream, but uncompress
-		$pdf->ezStream(['compress'=>0]);
+		return $pdf->ezStream(['compress'=>0]);
 	}
+
+
 /*
 	$codigo1 = substr($sobrenome,0,1);
 	// separa o t�tulo por espa�os em branco e verifica a primeira palavra
