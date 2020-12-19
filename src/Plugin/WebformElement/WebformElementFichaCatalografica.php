@@ -29,7 +29,7 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             'pessoa_ultimonome' => '',
             'orientador_nome' => '',
             'orientador_ultimonome' => '',
-            'sou_orientador' => '',
+            'sou_orientadora' => '',
             'tipo_trabalho' => '',
             'departamento' => '',
             'area_concentracao' => '',
@@ -98,11 +98,11 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             '#required' => FALSE,
         ];
 
-        $form['ficha_catalografica']['container']['informacoes_orientador']['sou_orientador'] = [
+        $form['ficha_catalografica']['container']['informacoes_orientador']['sou_orientadora'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
-            '#title' => $this->t('Chave para sou orientador(a)'),
-            '#description' => $this->t("O campo 'sou orientador(a)' é geralmente um checkbox que indica se o inscrito é ou não orientador. Caso afirmativo, seu nome e sobrenome serão pegos da área 'Informações Pessoais', não precisando preencher as 'Informações do(a) orientador(a)'."),
+            '#title' => $this->t('Chave para sou orientadora'),
+            '#description' => $this->t("Marcar para orientadoras (gênero feminino)"),
             '#required' => FALSE,
         ];
 
