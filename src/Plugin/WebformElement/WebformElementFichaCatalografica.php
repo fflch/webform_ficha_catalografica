@@ -29,7 +29,7 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             'pessoa_ultimonome' => '',
             'orientador_nome' => '',
             'orientador_ultimonome' => '',
-            'sou_orientador' => '',
+            'sou_orientadora' => '',
             'tipo_trabalho' => '',
             'departamento' => '',
             'area_concentracao' => '',
@@ -42,6 +42,9 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             'assunto3' => '',
             'assunto4' => '',
             'assunto5' => '',
+            'cabecalho' => '',
+            'unidade' => '',
+            'descricao_ficha' => '',
         ];
     }
 
@@ -68,14 +71,14 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para nome'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['informacoes_pessoais']['pessoa_ultimonome'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para último sobrenome'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['informacoes_orientador'] = [
@@ -88,22 +91,22 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para nome do(a) orientador(a)'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ]; 
 
         $form['ficha_catalografica']['container']['informacoes_orientador']['orientador_ultimonome'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('chave para último sobrenome do(a) orientador(a)'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
-        $form['ficha_catalografica']['container']['informacoes_orientador']['sou_orientador'] = [
+        $form['ficha_catalografica']['container']['informacoes_orientador']['sou_orientadora'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
-            '#title' => $this->t('Chave para sou orientador(a)'),
-            '#description' => $this->t("O campo 'sou orientador(a)' é geralmente um checkbox que indica se o inscrito é ou não orientador. Caso afirmativo, seu nome e sobrenome serão pegos da área 'Informações Pessoais', não precisando preencher as 'Informações do(a) orientador(a)'."),
-            '#required' => FALSE,
+            '#title' => $this->t('Chave para sou orientadora'),
+            '#description' => $this->t("Marcar para orientadoras (gênero feminino)"),
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['informacoes_obra'] = [
@@ -117,49 +120,49 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para tipo de trabalho'),
             '#description' => $this->t("Campo que indica o tipo de trabalho, como Tese, Dissertação, TGI"),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['informacoes_obra']['departamento'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para departamento'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['informacoes_obra']['area_concentracao'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para área de concentração'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['informacoes_obra']['ano'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para ano'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ]; 
 
         $form['ficha_catalografica']['container']['informacoes_obra']['no_paginas'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para número de páginas'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['informacoes_obra']['titulo_trabalho'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para título do trabalho'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['informacoes_obra']['cod_cutter'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para código cutter'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['assuntos'] = [
@@ -172,35 +175,61 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para primeiro assunto'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['assuntos']['assunto2'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para segundo assunto'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['assuntos']['assunto3'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para terceiro assunto'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
 
         $form['ficha_catalografica']['container']['assuntos']['assunto4'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para quarto assunto'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         ];
         
         $form['ficha_catalografica']['container']['assuntos']['assunto5'] = [
             '#type' => 'textfield',
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para quinto assunto'),
-            '#required' => FALSE,
+            '#required' => TRUE,
+        ];
+        $form['ficha_catalografica']['container']['info_ficha'] = [
+            '#type' => 'fieldset',
+            '#description' => $this->t('Utilize \n nos campos a seguir para pular linha.'),
+            '#title' => $this->t('Informações da Ficha'),
+        ];
+        $form['ficha_catalografica']['container']['info_ficha']['cabecalho'] = [
+            '#type' => 'textarea',
+            '#attributes' => ['size' => 1500],
+            '#description' => $this->t('Ex: Autorizo a reprodução e divulgação total ou parcial deste trabalho, por qualquer meio\nconvencional ou eletrônico, para fins de estudo e pesquisa, desde que citada a fonte.'),
+            '#title' => $this->t('Cabeçalho'),
+            '#required' => TRUE,
+        ];
+        $form['ficha_catalografica']['container']['info_ficha']['unidade'] = [
+            '#type' => 'textfield',
+            '#attributes' => ['size' => 1500],
+            '#description' => $this->t('Ex: Nome da Faculdade - Nome da universidade (Faculdade de Filosofia, Letras e Ciências Humanas da Universidade de São Paulo)'),
+            '#title' => $this->t('Unidade'),
+            '#required' => TRUE,
+        ];
+        $form['ficha_catalografica']['container']['info_ficha']['descricao_ficha'] = [
+            '#type' => 'textarea',
+            '#attributes' => ['size' => 1500],
+            '#description' => $this->t('Ex: Catalogação na Publicação\nServiço de Biblioteca e Documentação\nFaculdade de Filosofia, Letras e Ciências Humanas da Universidade de São Paulo'),
+            '#title' => $this->t('Descrição da Ficha'),
+            '#required' => TRUE,
         ];
         return $form;
     }
