@@ -1,5 +1,5 @@
 {
-    "name": "uspdev/webform_ficha_catalografica",
+    "name": "fflch/webform_ficha_catalografica",
     "description": "ficha catalográfica",
     "type": "drupal-module",
     "require": {
