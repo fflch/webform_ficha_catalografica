@@ -58,13 +58,13 @@ class WebformElementFichaCatalografica extends WebformElementBase {
         ];
 
         $form['ficha_catalografica']['container'] = [
-        '#type' => 'container',
+            '#type' => 'container',
         ];
 
         $form['ficha_catalografica']['container']['informacoes_pessoais'] = [
-        '#type' => 'fieldset',
-        '#description' => $this->t(""),
-        '#title' => $this->t('Informações Pessoais'),
+            '#type' => 'fieldset',
+            '#description' => $this->t(""),
+            '#title' => $this->t('Informações Pessoais'),
         ];
 
         $form['ficha_catalografica']['container']['informacoes_pessoais']['pessoa_nome'] = [
@@ -82,9 +82,9 @@ class WebformElementFichaCatalografica extends WebformElementBase {
         ];
 
         $form['ficha_catalografica']['container']['informacoes_orientador'] = [
-        '#type' => 'fieldset',
-        '#description' => $this->t(""),
-        '#title' => $this->t('Informações do(a) Orientador(a)'),
+            '#type' => 'fieldset',
+            '#description' => $this->t(""),
+            '#title' => $this->t('Informações do(a) Orientador(a)'),
 
         ];
         $form['ficha_catalografica']['container']['informacoes_orientador']['orientador_nome'] = [
@@ -110,9 +110,9 @@ class WebformElementFichaCatalografica extends WebformElementBase {
         ];
 
         $form['ficha_catalografica']['container']['informacoes_obra'] = [
-        '#type' => 'fieldset',
-        '#description' => $this->t(""),
-        '#title' => $this->t('Informações da Obra'),
+            '#type' => 'fieldset',
+            '#description' => $this->t(""),
+            '#title' => $this->t('Informações da Obra'),
         ];
 
         $form['ficha_catalografica']['container']['informacoes_obra']['tipo_trabalho'] = [

@@ -24,8 +24,6 @@ class Ficha {
 	  }
 	  # TODO: O que faremos senão tiver nenhum campo do tipo ficha?
 	  
-	
-  
 	  return [
 		'pessoa_nome' => $data[$ficha_field["#pessoa_nome"]],
 		'pessoa_ultimonome' => $data[$ficha_field["#pessoa_ultimonome"]],
@@ -53,7 +51,7 @@ class Ficha {
 	public static function pdf($webform_submission) {
 		$fields = self::fields($webform_submission);
 		
-		$orientadora = $fields['sou_orientadora'] ? 'a' : '';//se for do gênero feminino
+		$orientadora = $fields['sou_orientadora'] ? 'a' : ''; //se for do gênero feminino
 		
 		$codigo1 = substr($fields['pessoa_ultimonome'],0,1);
 		// separa o título por espaços em branco e verifica a primeira palavra
@@ -70,9 +68,9 @@ class Ficha {
 	
 		// monta o Código Cutter
 		$codigo = $codigo1.$fields['cod_cutter'].$codigo2;
+
 		// monta informações da ficha catalográfica
 		$texto = $fields['pessoa_ultimonome'].", ".$fields['pessoa_nome']."\n   ".$fields['titulo_trabalho']." / ".	$fields['pessoa_nome']." ".$fields['pessoa_ultimonome']." ; orientador$orientadora ".$fields['orientador_nome']." ".$fields['orientador_ultimonome'].". - São Paulo, ".$fields['ano'].".\n   ".$fields['no_paginas']." f.\n\n\n   ".$fields['tipo_trabalho']; 
-		
 		
 		$texto .= "- ".str_replace('\n', PHP_EOL,$fields['unidade']).". ".$fields['departamento'].	". Área de concentração: ".$fields['area_concentracao'].". \n\n\n   1. ".$fields['assunto1'].". ";
 	
@@ -96,24 +94,21 @@ class Ficha {
 	// Gera a ficha em pdf
 	$pdf = new Cezpdf('a4','portrait','color',[255,255,255]);
 
-	$pdf -> selectFont("../pdf-php/fonts/Times-Roman.afm");
+	$pdf->selectFont('Times-Roman');
 	
-	$pdf -> ezText (str_replace('\n', PHP_EOL, $fields['cabecalho']) . "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", 10, array('justification' => 'center'));
+	$pdf->ezText (str_replace('\n', PHP_EOL, $fields['cabecalho']) . "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", 10, array('justification' => 'center'));
 	
-	$pdf -> rectangle(116,90,350,210);
+	$pdf->rectangle(116,90,350,210);
 	
-	$pdf -> ezText (str_replace('\n', PHP_EOL,$fields['descricao_ficha']) . "\n\n", 10, array('justification' => 'center'));
+	$pdf->ezText (str_replace('\n', PHP_EOL,$fields['descricao_ficha']) . "\n\n", 10, array('justification' => 'center'));
 	
-	$pdf->selectFont("../pdf-php/fonts/Courier.afm");
+	$pdf->selectFont('Courier');
 	
-	$pdf -> ezTable ($ficha,'','', array ('fontSize' => 9,'showHeadings'=>0, 'showLines'=>0, 'width'=>345, 'cols' =>array('cod'=>array('width'=>45))));
-	
-	
+	$pdf->ezTable ($ficha,'','', array ('fontSize' => 9,'showHeadings'=>0, 'showLines'=>0, 'width'=>345, 'cols' =>array('cod'=>array('width'=>45))));
+
 	$pdf->ezStream();   
 	
 	}
-
-
 }
 
 
