@@ -44,6 +44,7 @@ class Ficha {
 		'assunto5' => $data[$ficha_field["#assunto5"]],
 		'cabecalho' => $ficha_field["#cabecalho"],
 		'unidade' => $ficha_field["#unidade"],
+		'cidade' => $ficha_field["#cidade"],
 		'descricao_ficha' => $ficha_field["#descricao_ficha"],
 	  ];
 	}
@@ -68,11 +69,14 @@ class Ficha {
 	
 		// monta o Código Cutter
 		$codigo = $codigo1.$fields['cod_cutter'].$codigo2;
-
+		$aux_orientador = "; orientador$orientadora ".$fields['orientador_nome']." ".$fields['orientador_ultimonome'];
+		$orientador_texto = isset($fields['orientador_nome']) && strlen($fields['orientador_nome']) > 0 && isset($fields['orientador_ultimonome']) && strlen($fields['orientador_ultimonome']) > 0  ? $aux_orientador : "";
 		// monta informações da ficha catalográfica
-		$texto = $fields['pessoa_ultimonome'].", ".$fields['pessoa_nome']."\n   ".$fields['titulo_trabalho']." / ".	$fields['pessoa_nome']." ".$fields['pessoa_ultimonome']." ; orientador$orientadora ".$fields['orientador_nome']." ".$fields['orientador_ultimonome'].". - São Paulo, ".$fields['ano'].".\n   ".$fields['no_paginas']." f.\n\n\n   ".$fields['tipo_trabalho']; 
+		$texto = $fields['pessoa_ultimonome'].", ".$fields['pessoa_nome']."\n   ".$fields['titulo_trabalho']." / ".	$fields['pessoa_nome']." ".$fields['pessoa_ultimonome']. $orientador_texto . " - ".$fields['cidade'].", ".$fields['ano'].".\n   ".$fields['no_paginas']." f.\n\n\n   ".$fields['tipo_trabalho']; 
 		
-		$texto .= "- ".str_replace('\n', PHP_EOL,$fields['unidade']).". ".$fields['departamento'].	". Área de concentração: ".$fields['area_concentracao'].". \n\n\n   1. ".$fields['assunto1'].". ";
+		$departamento_texto = isset($fields['departamento']) && strlen($fields['departamento']) > 0 ? " ".$fields['departamento'].". " : " ";  
+		$area_texto = isset($fields['area_concentracao']) && strlen($fields['area_concentracao']) > 0 ? "Área de concentração:  ".$fields['area_concentracao'].". " : " ";  
+		$texto .= "- ".str_replace('\n', PHP_EOL,$fields['unidade']).".".$departamento_texto.	$area_texto."\n\n\n   1. ".$fields['assunto1'].". ";
 	
 		if (!empty ($fields['assunto2'])) 
 			$texto .= "2. ".$fields['assunto2'].". "; 
