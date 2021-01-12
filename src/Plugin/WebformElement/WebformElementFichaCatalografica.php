@@ -44,6 +44,7 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             'assunto5' => '',
             'cabecalho' => '',
             'unidade' => '',
+            'cidade' => '',
             'descricao_ficha' => '',
         ];
     }
@@ -221,7 +222,14 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             '#type' => 'textfield',
             '#attributes' => ['size' => 1500],
             '#description' => $this->t('Ex: Nome da Faculdade - Nome da universidade (Faculdade de Filosofia, Letras e Ciências Humanas da Universidade de São Paulo)'),
-            '#title' => $this->t('Unidade'),
+            '#title' => $this->t('Unidade/Programa'),
+            '#required' => TRUE,
+        ];
+        $form['ficha_catalografica']['container']['info_ficha']['cidade'] = [
+            '#type' => 'textfield',
+            '#attributes' => ['size' => 500],
+            '#description' => $this->t('Ex: São Paulo'),
+            '#title' => $this->t('Cidade'),
             '#required' => TRUE,
         ];
         $form['ficha_catalografica']['container']['info_ficha']['descricao_ficha'] = [
