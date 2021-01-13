@@ -75,7 +75,7 @@ class Ficha {
 		$texto = $fields['pessoa_ultimonome'].", ".$fields['pessoa_nome']."\n   ".$fields['titulo_trabalho']." / ".	$fields['pessoa_nome']." ".$fields['pessoa_ultimonome']. $orientador_texto . " - ".$fields['cidade'].", ".$fields['ano'].".\n   ".$fields['no_paginas']." f.\n\n\n   ".$fields['tipo_trabalho']; 
 		
 		$departamento_texto = isset($fields['departamento']) && strlen($fields['departamento']) > 0 ? " ".$fields['departamento'].". " : " ";  
-		$area_texto = isset($fields['area_concentracao']) && strlen($fields['area_concentracao']) > 0 ? "Área de concentração:  ".$fields['area_concentracao'].". " : " ";  
+		$area_texto = isset($fields['area_concentracao']) && strlen($fields['area_concentracao']) > 0 ? "Área de concentração: ".$fields['area_concentracao'].". " : " ";  
 		$texto .= "- ".str_replace('\n', PHP_EOL,$fields['unidade']).".".$departamento_texto.	$area_texto."\n\n\n   1. ".$fields['assunto1'].". ";
 	
 		if (!empty ($fields['assunto2'])) 
@@ -89,8 +89,9 @@ class Ficha {
 	
 		if (!empty ($fields['assunto5'])) 
 			$texto .= "5. ".$fields['assunto5'].". ";
-			
-		$texto .= "I. ".$fields['orientador_ultimonome'].", ".$fields['orientador_nome'].", orient. II. Título.";
+		
+		if (isset($fields['orientador_nome']) && strlen($fields['orientador_nome']) > 0 && isset($fields['orientador_ultimonome']) && strlen($fields['orientador_ultimonome']) > 0)
+			$texto .= "I. ".$fields['orientador_ultimonome'].", ".$fields['orientador_nome'].", orient. II. Título.";
 	
 	
 	$ficha = array (array('cod' => "\n".$codigo, 'ficha' => $texto));
