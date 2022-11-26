@@ -29,7 +29,10 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             'pessoa_ultimonome' => '',
             'orientador_nome' => '',
             'orientador_ultimonome' => '',
+            'coorientador_nome' => '',
+            'coorientador_ultimonome' => '',
             'sou_orientadora' => '',
+            'sou_coorientadora' => '',
             'tipo_trabalho' => '',
             'departamento' => '',
             'area_concentracao' => '',
@@ -107,6 +110,34 @@ class WebformElementFichaCatalografica extends WebformElementBase {
             '#attributes' => ['size' => 125],
             '#title' => $this->t('Chave para sou orientadora'),
             '#description' => $this->t("Marcar para orientadoras (gênero feminino)"),
+            '#required' => TRUE,
+        ];
+
+        $form['ficha_catalografica']['container']['informacoes_coorientador'] = [
+            '#type' => 'fieldset',
+            '#description' => $this->t(""),
+            '#title' => $this->t('Informações do(a) Coorientador(a)'),
+
+        ];
+        $form['ficha_catalografica']['container']['informacoes_coorientador']['coorientador_nome'] = [
+            '#type' => 'textfield',
+            '#attributes' => ['size' => 125],
+            '#title' => $this->t('Chave para nome do(a) Coorientador(a)'),
+            '#required' => TRUE,
+        ]; 
+
+        $form['ficha_catalografica']['container']['informacoes_coorientador']['coorientador_ultimonome'] = [
+            '#type' => 'textfield',
+            '#attributes' => ['size' => 125],
+            '#title' => $this->t('chave para último sobrenome do(a) Coorientador(a)'),
+            '#required' => TRUE,
+        ];
+
+        $form['ficha_catalografica']['container']['informacoes_coorientador']['sou_coorientadora'] = [
+            '#type' => 'textfield',
+            '#attributes' => ['size' => 125],
+            '#title' => $this->t('Chave para sou coorientadora'),
+            '#description' => $this->t("Marcar para coorientadoras (gênero feminino)"),
             '#required' => TRUE,
         ];
 

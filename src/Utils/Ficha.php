@@ -30,6 +30,9 @@ class Ficha {
 		'orientador_nome' => $data[$ficha_field["#orientador_nome"]],
 		'orientador_ultimonome' => $data[$ficha_field["#orientador_ultimonome"]],
 		'sou_orientadora' => $data[$ficha_field["#sou_orientadora"]],
+		'coorientador_nome' => $data[$ficha_field["#coorientador_nome"]],
+		'coorientador_ultimonome' => $data[$ficha_field["#coorientador_ultimonome"]],
+		'sou_coorientadora' => $data[$ficha_field["#sou_coorientadora"]],
 		'tipo_trabalho' => $data[$ficha_field["#tipo_trabalho"]],
 		'departamento' => $data[$ficha_field["#departamento"]],
 		'area_concentracao' => $data[$ficha_field["#area_concentracao"]],
@@ -53,6 +56,7 @@ class Ficha {
 		$fields = self::fields($webform_submission);
 		
 		$orientadora = $fields['sou_orientadora'] ? 'a' : ''; //se for do gênero feminino
+		$coorientadora = $fields['sou_coorientadora'] ? 'a' : ''; //se for do gênero feminino
 		
 		$codigo1 = substr($fields['pessoa_ultimonome'],0,1);
 		// separa o título por espaços em branco e verifica a primeira palavra
@@ -69,10 +73,16 @@ class Ficha {
 	
 		// monta o Código Cutter
 		$codigo = $codigo1.$fields['cod_cutter'].$codigo2;
+
 		$aux_orientador = "; orientador$orientadora ".$fields['orientador_nome']." ".$fields['orientador_ultimonome'];
 		$orientador_texto = isset($fields['orientador_nome']) && strlen($fields['orientador_nome']) > 0 && isset($fields['orientador_ultimonome']) && strlen($fields['orientador_ultimonome']) > 0  ? $aux_orientador : "";
+		
+		$aux_coorientador = "; coorientador$coorientadora ".$fields['coorientador_nome']." ".$fields['coorientador_ultimonome'];
+		$coorientador_texto = isset($fields['coorientador_nome']) && strlen($fields['coorientador_nome']) > 0 && isset($fields['coorientador_ultimonome']) && strlen($fields['coorientador_ultimonome']) > 0  ? $aux_coorientador : "";
+
+
 		// monta informações da ficha catalográfica
-		$texto = $fields['pessoa_ultimonome'].", ".$fields['pessoa_nome']."\n   ".$fields['titulo_trabalho']." / ".	$fields['pessoa_nome']." ".$fields['pessoa_ultimonome']. $orientador_texto . " - ".$fields['cidade'].", ".$fields['ano'].".\n   ".$fields['no_paginas']." f.\n\n\n   ".$fields['tipo_trabalho']; 
+		$texto = $fields['pessoa_ultimonome'].", ".$fields['pessoa_nome']."\n   ".$fields['titulo_trabalho']." / ".	$fields['pessoa_nome']." ".$fields['pessoa_ultimonome']. $orientador_texto . $coorientador_texto . " - ".$fields['cidade'].", ".$fields['ano'].".\n   ".$fields['no_paginas']." f.\n\n\n   ".$fields['tipo_trabalho']; 
 		
 		$departamento_texto = isset($fields['departamento']) && strlen($fields['departamento']) > 0 ? " ".$fields['departamento'].". " : " ";  
 		$area_texto = isset($fields['area_concentracao']) && strlen($fields['area_concentracao']) > 0 ? "Área de concentração: ".$fields['area_concentracao'].". " : " ";  
